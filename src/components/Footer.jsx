@@ -31,10 +31,23 @@ const Footer = () => {
     },
   ];
 
+  const containerV = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.08, delayChildren: 0.2 } }
+  };
+
+  const itemV = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+  };
+
   return (
-    <footer className="relative bg-[#020617] pt-20 pb-10 overflow-hidden border-t border-white/5">
+    <footer className="relative bg-[#020617] pt-20 pb-10 overflow-hidden">
+      {/* Top gradient separator */}
+      <div className="absolute top-0 left-0 w-full gradient-line" />
+
       {/* Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-r from-sky-400/5 via-violet-500/5 to-sky-400/5 blur-[100px] pointer-events-none"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-r from-sky-400/5 via-violet-500/5 to-sky-400/5 blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
         <div className="flex flex-col items-center text-center">
@@ -55,35 +68,49 @@ const Footer = () => {
           </motion.div>
 
           {/* Navigation */}
-          <nav className="mb-10">
+          <motion.nav
+            variants={containerV}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mb-10"
+          >
             <ul className="flex flex-wrap justify-center gap-6 sm:gap-10">
               {navLinks.map((link) => (
-                <li key={link.name}>
+                <motion.li key={link.name} variants={itemV}>
                   <Link
                     to={link.to}
                     smooth={true}
                     duration={500}
                     offset={-80}
-                    className="text-slate-500 hover:text-sky-400 font-semibold transition-all duration-300 cursor-pointer text-xs tracking-wider uppercase"
+                    className="text-slate-500 hover:text-sky-400 font-semibold transition-all duration-300 cursor-pointer text-xs tracking-wider uppercase relative group"
                   >
                     {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-sky-400 group-hover:w-full transition-all duration-300" />
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </nav>
+          </motion.nav>
 
           {/* Social Links */}
-          <div className="flex items-center gap-5 mb-12">
+          <motion.div
+            variants={containerV}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex items-center gap-5 mb-12"
+          >
             {socialLinks.map((social) => (
               <motion.a
                 key={social.name}
-                whileHover={{ y: -4, scale: 1.1 }}
+                variants={itemV}
+                whileHover={{ y: -4, scale: 1.1, boxShadow: "0 0 20px rgba(56,189,248,0.2)" }}
                 whileTap={{ scale: 0.9 }}
                 href={social.href}
                 target={social.name !== 'Email' ? "_blank" : undefined}
                 rel={social.name !== 'Email' ? "noreferrer" : undefined}
-                className="group w-11 h-11 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl transition-all duration-300 hover:border-sky-400/30"
+                className="group w-11 h-11 flex items-center justify-center bg-slate-900/60 border border-white/[0.08] rounded-xl transition-all duration-300 hover:border-sky-400/30 hover:bg-sky-400/5"
                 aria-label={social.name}
               >
                 <svg 
@@ -97,13 +124,19 @@ const Footer = () => {
                 </svg>
               </motion.a>
             ))}
-          </div>
+          </motion.div>
 
           {/* Divider */}
-          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
+          <div className="w-full gradient-line mb-8" />
 
           {/* Copyright */}
-          <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-between w-full gap-4"
+          >
             <p className="text-slate-600 text-xs font-medium">
               &copy; {currentYear} Tamil Kumaran. All rights reserved.
             </p>
@@ -111,9 +144,23 @@ const Footer = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               Designed & Built with Passion
             </p>
-          </div>
+          </motion.div>
         </div>
       </div>
+
+      {/* Back to top */}
+      <Link to="hero" smooth={true} duration={800}>
+        <motion.button
+          whileHover={{ y: -3, boxShadow: "0 0 20px rgba(56,189,248,0.2)" }}
+          whileTap={{ scale: 0.9 }}
+          className="fixed bottom-8 right-8 w-10 h-10 rounded-xl bg-slate-900/60 border border-white/[0.08] flex items-center justify-center text-slate-500 hover:text-sky-400 hover:border-sky-400/30 transition-all duration-300 cursor-pointer z-40 backdrop-blur-xl"
+          aria-label="Back to top"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="18 15 12 9 6 15"/>
+          </svg>
+        </motion.button>
+      </Link>
     </footer>
   );
 };

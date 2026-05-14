@@ -1,1 +1,5 @@
-/* Clear default Vite styles */
+/* App-level layout styles */
+.App {
+  min-height: 100vh;
+  position: relative;
+}

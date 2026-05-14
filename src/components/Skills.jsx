@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const Skills = () => {
@@ -11,7 +11,8 @@ const Skills = () => {
         </svg>
       ),
       skills: ["React.js", "JavaScript (ES6+)", "Tailwind CSS", "HTML5 & CSS3", "Responsive Design"],
-      color: "from-sky-400 to-blue-500"
+      color: "from-sky-400 to-blue-500",
+      glow: "rgba(56,189,248,0.15)"
     },
     {
       title: "Backend & Core",
@@ -21,7 +22,8 @@ const Skills = () => {
         </svg>
       ),
       skills: ["Node.js", "Express.js", "REST APIs", "Data Structures", "Algorithms"],
-      color: "from-violet-400 to-purple-500"
+      color: "from-violet-400 to-purple-500",
+      glow: "rgba(139,92,246,0.15)"
     },
     {
       title: "Tools & DevOps",
@@ -31,88 +33,51 @@ const Skills = () => {
         </svg>
       ),
       skills: ["Git & GitHub", "Vite", "NPM / Yarn", "Postman", "Chrome DevTools"],
-      color: "from-emerald-400 to-teal-500"
+      color: "from-emerald-400 to-teal-500",
+      glow: "rgba(52,211,153,0.15)"
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 }
-    }
-  };
+  const containerV = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { staggerChildren: 0.2 } } };
+  const itemV = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] } } };
+  const skillV = { hidden: { opacity: 0, x: -10 }, visible: (i) => ({ opacity: 1, x: 0, transition: { delay: i * 0.08, duration: 0.3 } }) };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
-    }
-  };
+  const onMove = useCallback((e) => {
+    const c = e.currentTarget, r = c.getBoundingClientRect();
+    c.style.setProperty('--mouse-x', `${((e.clientX - r.left) / r.width) * 100}%`);
+    c.style.setProperty('--mouse-y', `${((e.clientY - r.top) / r.height) * 100}%`);
+  }, []);
 
   return (
     <section id="skills" className="relative py-28 bg-[#020617] overflow-hidden section-separator">
-      {/* Background */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-sky-500/5 rounded-full blur-[150px] pointer-events-none"></div>
-
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-sky-500/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        {/* Section Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-20 text-center"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20 text-center">
           <span className="text-violet-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Expertise</span>
           <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-violet-500">Stack</span></h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-sky-400 to-violet-500 mx-auto rounded-full"></div>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-sky-400 to-violet-500 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Categories Grid */}
-        <motion.div 
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8"
-        >
-          {categories.map((category, idx) => (
-            <motion.div 
-              key={idx}
-              variants={itemVariants}
-              whileHover={{ y: -8 }}
-              className="group relative p-9 rounded-3xl glass transition-all duration-500 hover:shadow-[0_20px_50px_rgba(56,189,248,0.08)]"
-            >
-              {/* Icon */}
-              <div className={`mb-8 p-4 rounded-2xl w-fit bg-gradient-to-br ${category.color} bg-opacity-10 text-white/80 group-hover:text-white group-hover:shadow-lg transition-all duration-300`}
-                style={{ background: `linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))` }}
-              >
-                <div className={`text-transparent bg-clip-text bg-gradient-to-r ${category.color}`} style={{ WebkitTextFillColor: 'unset' }}>
-                  <div className="text-slate-400 group-hover:text-sky-400 transition-colors duration-300">
-                    {category.icon}
-                  </div>
-                </div>
+        <motion.div variants={containerV} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {categories.map((cat, idx) => (
+            <motion.div key={idx} variants={itemV} whileHover={{ y: -8 }} onMouseMove={onMove}
+              className="group relative p-9 rounded-3xl glass-premium card-spotlight glow-border transition-all duration-500"
+              style={{ '--mouse-x': '50%', '--mouse-y': '50%' }}>
+              <div className="mb-8 p-4 rounded-2xl w-fit relative" style={{ background: 'linear-gradient(135deg, rgba(15,23,42,0.8), rgba(15,23,42,0.5))' }}>
+                <div className="text-slate-400 group-hover:text-sky-400 transition-colors duration-300">{cat.icon}</div>
+                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" style={{ background: cat.glow }} />
               </div>
-
-              <h3 className="font-display text-xl font-bold text-white mb-7 group-hover:text-sky-400 transition-colors duration-300">
-                {category.title}
-              </h3>
-              
+              <h3 className="font-display text-xl font-bold text-white mb-7 group-hover:text-sky-400 transition-colors duration-300">{cat.title}</h3>
               <ul className="space-y-4">
-                {category.skills.map((skill, i) => (
-                  <li key={i} className="flex items-center gap-3 text-slate-400 group/item cursor-default">
-                    <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${category.color} group-hover/item:scale-150 transition-transform duration-300`}></span>
+                {cat.skills.map((skill, i) => (
+                  <motion.li key={i} custom={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={skillV} className="flex items-center gap-3 text-slate-400 group/item cursor-default">
+                    <span className={`w-1.5 h-1.5 rounded-full bg-gradient-to-r ${cat.color} group-hover/item:scale-[2] transition-transform duration-300`} />
                     <span className="text-sm font-medium group-hover/item:text-slate-200 transition-colors duration-300">{skill}</span>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
-
-              {/* Hover glow */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr ${category.color} pointer-events-none rounded-3xl`} style={{ opacity: 0 }}></div>
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-white/[0.02] via-transparent to-white/[0.02] pointer-events-none rounded-3xl"></div>
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-white/[0.02] via-transparent to-white/[0.02] pointer-events-none rounded-3xl" />
+              <div className="absolute bottom-0 left-[15%] right-[15%] h-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" style={{ background: `linear-gradient(90deg, transparent, ${cat.glow}, transparent)` }} />
             </motion.div>
           ))}
         </motion.div>
