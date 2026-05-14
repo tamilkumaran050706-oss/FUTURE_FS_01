@@ -2,15 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
+  const contactLinks = [
+    { label: 'Email', value: 'tamil.kumaran050706@gmail.com', icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6', href: 'mailto:tamil.kumaran050706@gmail.com' },
+    { label: 'LinkedIn', value: 'Tamil Kumaran', icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z', href: 'https://www.linkedin.com/in/tamil-kumaran-11181432a/' },
+    { label: 'GitHub', value: 'tamilkumaran050706-oss', icon: 'M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4M9 18c-4.51 2-5-2-7-2', href: 'https://github.com/tamilkumaran050706-oss' }
+  ];
+
   return (
-    <section id="contact" className="relative py-24 bg-[#0f172a] overflow-hidden">
-      {/* Background Decorative Element */}
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5 }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-sky-500/5 rounded-full blur-[120px] pointer-events-none"
-      ></motion.div>
+    <section id="contact" className="relative py-28 bg-[#020617] overflow-hidden">
+      {/* Background */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-600/5 rounded-full blur-[150px] pointer-events-none"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
         {/* Section Header */}
@@ -19,125 +20,110 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20 text-center lg:text-left"
+          className="mb-20 text-center"
         >
-          <span className="text-sky-400 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Communication</span>
-          <h2 className="text-4xl sm:text-5xl font-black text-white mb-6">Get In Touch</h2>
-          <div className="w-24 h-1.5 bg-sky-400 mx-auto lg:mx-0 rounded-full mb-8"></div>
-          <p className="text-gray-400 text-lg max-w-2xl leading-relaxed">
-            Let’s connect and build something amazing together. I’m always open to new opportunities, collaborations, or just a friendly chat.
-          </p>
+          <span className="text-violet-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Contact</span>
+          <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-violet-500">Touch</span></h2>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-sky-400 to-violet-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
-          {/* Left Side: Contact Info & Socials */}
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          {/* Contact Info */}
           <motion.div 
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex-1 space-y-12"
+            transition={{ duration: 0.7 }}
+            className="flex-1 space-y-8"
           >
-            <div className="space-y-8">
-              {/* Email Card */}
-              <motion.a 
-                whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)" }}
-                href="mailto:tamil.kumaran050706@gmail.com"
-                className="group flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300"
-              >
-                <div className="w-14 h-14 flex items-center justify-center bg-sky-400/10 text-sky-400 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                </div>
-                <div>
-                  <div className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-1">Email Me</div>
-                  <div className="text-white font-bold text-lg break-all">tamil.kumaran050706@gmail.com</div>
-                </div>
-              </motion.a>
-
-              {/* GitHub Card */}
-              <motion.a 
-                whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)" }}
-                href="https://github.com/tamilkumaran050706-oss"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300"
-              >
-                <div className="w-14 h-14 flex items-center justify-center bg-white/5 text-gray-400 group-hover:text-white group-hover:bg-white/10 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                </div>
-                <div>
-                  <div className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-1">Follow Me</div>
-                  <div className="text-white font-bold text-lg">GitHub Profile</div>
-                </div>
-              </motion.a>
-
-              {/* LinkedIn Card */}
-              <motion.a 
-                whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)" }}
-                href="https://www.linkedin.com/in/tamil-kumaran-11181432a/"
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center gap-6 p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300"
-              >
-                <div className="w-14 h-14 flex items-center justify-center bg-sky-400/10 text-sky-400 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-                </div>
-                <div>
-                  <div className="text-gray-400 text-sm font-bold uppercase tracking-widest mb-1">Connect Me</div>
-                  <div className="text-white font-bold text-lg">LinkedIn Profile</div>
-                </div>
-              </motion.a>
+            <div className="mb-10">
+              <h3 className="font-display text-3xl font-bold text-white mb-4 tracking-tight">
+                Let's build something <span className="text-sky-400">extraordinary</span>.
+              </h3>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+              </p>
+            </div>
+            
+            <div className="space-y-4">
+              {contactLinks.map((item, idx) => (
+                <motion.a 
+                  key={idx}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  whileHover={{ x: 8 }}
+                  className="flex items-center gap-5 p-5 rounded-2xl glass group transition-all duration-300 hover:shadow-[0_0_30px_rgba(56,189,248,0.05)]"
+                >
+                  <div className="w-11 h-11 flex items-center justify-center rounded-xl bg-sky-400/10 text-sky-400 group-hover:bg-sky-400 group-hover:text-slate-950 transition-all duration-300 flex-shrink-0">
+                    <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d={item.icon} /></svg>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest mb-0.5">{item.label}</p>
+                    <p className="text-white font-semibold text-sm truncate">{item.value}</p>
+                  </div>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
-          {/* Right Side: Contact Form */}
+          {/* Contact Form */}
           <motion.div 
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex-[1.5]"
+            transition={{ duration: 0.7 }}
+            className="flex-[1.3] p-8 lg:p-10 rounded-3xl glass relative overflow-hidden"
           >
-            <form className="p-8 sm:p-10 bg-white/5 border border-white/10 rounded-3xl backdrop-blur-xl shadow-2xl space-y-6">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-sky-400/5 blur-[80px] pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-violet-500/5 blur-[60px] pointer-events-none"></div>
+            
+            <form className="space-y-6 relative z-10">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-gray-400 text-sm font-bold uppercase tracking-wider ml-1">Full Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="John Doe"
-                    className="w-full px-6 py-4 bg-[#0f172a] border border-white/10 rounded-2xl text-white placeholder:text-gray-600 focus:outline-none focus:border-sky-400/50 focus:ring-4 focus:ring-sky-400/10 transition-all duration-300"
+                  <label htmlFor="name" className="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-1">Full Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="Your name"
+                    className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-sky-400/50 glow-focus transition-all duration-300"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-gray-400 text-sm font-bold uppercase tracking-wider ml-1">Email Address</label>
-                  <input 
-                    type="email" 
-                    placeholder="john@example.com"
-                    className="w-full px-6 py-4 bg-[#0f172a] border border-white/10 rounded-2xl text-white placeholder:text-gray-600 focus:outline-none focus:border-sky-400/50 focus:ring-4 focus:ring-sky-400/10 transition-all duration-300"
+                  <label htmlFor="email" className="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-1">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="Your email"
+                    className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-sky-400/50 glow-focus transition-all duration-300"
                   />
                 </div>
               </div>
-              
               <div className="space-y-2">
-                <label className="text-gray-400 text-sm font-bold uppercase tracking-wider ml-1">Your Message</label>
-                <textarea 
-                  rows="5"
+                <label htmlFor="subject" className="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-1">Subject</label>
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="Project inquiry"
+                  className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-sky-400/50 glow-focus transition-all duration-300"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-slate-400 text-[10px] font-bold uppercase tracking-widest ml-1">Message</label>
+                <textarea
+                  id="message"
+                  rows="4"
                   placeholder="Tell me about your project..."
-                  className="w-full px-6 py-4 bg-[#0f172a] border border-white/10 rounded-2xl text-white placeholder:text-gray-600 focus:outline-none focus:border-sky-400/50 focus:ring-4 focus:ring-sky-400/10 transition-all duration-300 resize-none"
+                  className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-sky-400/50 glow-focus transition-all duration-300 resize-none"
                 ></textarea>
               </div>
-
-              <motion.button 
-                whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(56,189,248,0.2)" }}
+              <motion.button
+                whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(56,189,248,0.2)" }}
                 whileTap={{ scale: 0.98 }}
-                type="button"
-                className="w-full group relative px-10 py-5 bg-sky-400 text-[#0f172a] font-black rounded-2xl overflow-hidden transition-all duration-300 active:scale-95"
+                className="w-full py-4 bg-gradient-to-r from-sky-400 to-sky-500 text-slate-950 font-bold rounded-xl transition-all duration-300 text-sm tracking-wider uppercase flex items-center justify-center gap-3"
               >
-                <span className="relative z-10 flex items-center justify-center gap-3 text-lg uppercase tracking-widest">
-                  Send Message
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"><line x1="22" y1="2" x2="11" y2="13"/><polyline points="22 2 15 22 11 13 2 9 22 2"/></svg>
-                </span>
-                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                Send Message
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
               </motion.button>
             </form>
           </motion.div>

@@ -32,36 +32,31 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-[#0f172a] pt-24 pb-12 overflow-hidden border-t border-white/5">
-      {/* Background Decorative Element */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        className="absolute top-0 right-0 w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"
-      ></motion.div>
+    <footer className="relative bg-[#020617] pt-20 pb-10 overflow-hidden border-t border-white/5">
+      {/* Background */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-r from-sky-400/5 via-violet-500/5 to-sky-400/5 blur-[100px] pointer-events-none"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col items-center text-center"
-        >
-          {/* Branding */}
-          <div className="mb-12">
-            <h2 className="text-3xl font-black text-white mb-3">
-              Tamil <span className="text-sky-400">Kumaran</span>
+        <div className="flex flex-col items-center text-center">
+          {/* Logo */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-10"
+          >
+            <h2 className="font-display text-3xl font-bold text-white mb-2 tracking-tight">
+              TAMIL <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-violet-500">KUMARAN</span>
             </h2>
-            <p className="text-gray-400 font-medium tracking-widest uppercase text-xs">
-              Full Stack Web Developer
+            <p className="text-slate-500 text-[10px] font-bold tracking-[0.4em] uppercase">
+              Full Stack Developer
             </p>
-          </div>
+          </motion.div>
 
-          {/* Navigation Links */}
-          <nav className="mb-12">
-            <ul className="flex flex-wrap justify-center gap-8 sm:gap-12">
+          {/* Navigation */}
+          <nav className="mb-10">
+            <ul className="flex flex-wrap justify-center gap-6 sm:gap-10">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -69,7 +64,7 @@ const Footer = () => {
                     smooth={true}
                     duration={500}
                     offset={-80}
-                    className="text-gray-400 hover:text-sky-400 font-bold transition-all duration-300 cursor-pointer text-sm tracking-widest uppercase"
+                    className="text-slate-500 hover:text-sky-400 font-semibold transition-all duration-300 cursor-pointer text-xs tracking-wider uppercase"
                   >
                     {link.name}
                   </Link>
@@ -79,21 +74,21 @@ const Footer = () => {
           </nav>
 
           {/* Social Links */}
-          <div className="flex items-center gap-8 mb-16">
+          <div className="flex items-center gap-5 mb-12">
             {socialLinks.map((social) => (
               <motion.a
                 key={social.name}
-                whileHover={{ y: -5, backgroundColor: "rgba(56, 189, 248, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)" }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ y: -4, scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
                 href={social.href}
                 target={social.name !== 'Email' ? "_blank" : undefined}
                 rel={social.name !== 'Email' ? "noreferrer" : undefined}
-                className="group w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl transition-all duration-300"
+                className="group w-11 h-11 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl transition-all duration-300 hover:border-sky-400/30"
                 aria-label={social.name}
               >
                 <svg 
                   viewBox="0 0 24 24" 
-                  className="w-5 h-5 fill-none stroke-current text-gray-400 group-hover:text-sky-400 transition-colors duration-300" 
+                  className="w-5 h-5 fill-none stroke-current text-slate-500 group-hover:text-sky-400 transition-colors duration-300" 
                   strokeWidth="2" 
                   strokeLinecap="round" 
                   strokeLinejoin="round"
@@ -105,24 +100,19 @@ const Footer = () => {
           </div>
 
           {/* Divider */}
-          <motion.div 
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="w-full h-[1px] bg-white/5 mb-8"
-          ></motion.div>
+          <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
 
           {/* Copyright */}
           <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4">
-            <p className="text-gray-500 text-sm font-medium">
+            <p className="text-slate-600 text-xs font-medium">
               &copy; {currentYear} Tamil Kumaran. All rights reserved.
             </p>
-            <p className="text-gray-600 text-xs italic">
+            <p className="text-slate-700 text-xs flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               Designed & Built with Passion
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

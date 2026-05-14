@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --primary: #0f172a;
-  --accent: #38bdf8;
+  --background: #020617;
+  --secondary-bg: #0f172a;
+  --primary-accent: #38bdf8;
+  --secondary-accent: #8b5cf6;
 }
 
 html {
@@ -10,32 +12,102 @@ html {
 }
 
 body {
-  background-color: var(--primary);
-  color: white;
+  background-color: var(--background);
+  color: #f8fafc;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar for better aesthetics */
+/* Selection styling */
+::selection {
+  background: rgba(56, 189, 248, 0.3);
+  color: #f8fafc;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1e293b;
+  background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: linear-gradient(to bottom, #38bdf8, #8b5cf6);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: linear-gradient(to bottom, #7dd3fc, #a78bfa);
 }
 
-/* Custom theme colors for Tailwind v4 if needed */
+/* Custom theme colors for Tailwind v4 */
 @theme {
-  --color-primary: #0f172a;
-  --color-accent: #38bdf8;
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+  --color-sky-400: #38bdf8;
+  --color-violet-500: #8b5cf6;
+}
+
+/* Animated gradient text */
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 4s ease infinite;
+}
+
+/* Floating blob animation */
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -30px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 12s ease-in-out infinite reverse;
+}
+
+/* Heading font */
+.font-display {
+  font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+}
+
+/* Glass utility */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glow ring on focus for inputs */
+.glow-focus:focus {
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+/* Subtle section separator */
+.section-separator {
+  position: relative;
+}
+
+.section-separator::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.2), rgba(139, 92, 246, 0.2), transparent);
 }
