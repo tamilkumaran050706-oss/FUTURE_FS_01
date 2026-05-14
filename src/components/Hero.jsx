@@ -42,13 +42,8 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
-            <Link to="projects" smooth={true} duration={500} offset={-80}>
-              <button className="px-10 py-4 bg-sky-400 text-[#0f172a] font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(56,189,248,0.4)] active:scale-95 cursor-pointer">
-                View Projects
-              </button>
-            </Link>
             <Link to="contact" smooth={true} duration={500} offset={-80}>
-              <button className="px-10 py-4 bg-transparent border border-white/10 text-white font-bold rounded-2xl backdrop-blur-md transition-all duration-300 hover:bg-white/5 hover:border-white/30 hover:scale-105 active:scale-95 cursor-pointer">
+              <button className="px-10 py-4 bg-sky-400 text-[#0f172a] font-bold rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(56,189,248,0.4)] active:scale-95 cursor-pointer">
                 Contact Me
               </button>
             </Link>
