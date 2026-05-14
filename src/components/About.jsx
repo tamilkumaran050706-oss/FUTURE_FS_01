@@ -3,12 +3,6 @@ import profileImg from '../assets/profile.jpeg';
 import { motion } from 'framer-motion';
 
 const About = () => {
-  const stats = [
-    { label: 'Projects Built', value: '10+', icon: '🚀' },
-    { label: 'Technologies', value: '15+', icon: '💻' },
-    { label: 'Frontend Focus', value: 'React', icon: '🎨' },
-    { label: 'Continuous', value: 'Learner', icon: '📚' },
-  ];
 
   return (
     <section id="about" className="relative py-24 bg-[#0f172a] overflow-hidden">
@@ -85,24 +79,6 @@ const About = () => {
               Currently, I am improving my frontend and backend development skills by building real-world projects and continuously learning modern technologies. My goal is to become a professional software developer and contribute to impactful digital solutions.
             </p>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-2 gap-4 mb-12">
-              {stats.map((stat, index) => (
-                <motion.div 
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * index, duration: 0.5 }}
-                  whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)" }}
-                  className="p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300 group text-left"
-                >
-                  <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">{stat.icon}</div>
-                  <div className="text-white font-bold text-xl mb-1">{stat.value}</div>
-                  <div className="text-gray-500 text-sm font-medium">{stat.label}</div>
-                </motion.div>
-              ))}
-            </div>
 
             {/* Resume Button */}
             <motion.button 
