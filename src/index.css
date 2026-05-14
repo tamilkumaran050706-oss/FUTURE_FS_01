@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --primary: #0f172a;
@@ -34,4 +32,10 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
+}
+
+/* Custom theme colors for Tailwind v4 if needed */
+@theme {
+  --color-primary: #0f172a;
+  --color-accent: #38bdf8;
 }
