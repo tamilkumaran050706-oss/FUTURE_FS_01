@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Skills = () => {
   const skillCategories = [
@@ -30,6 +31,25 @@ const Skills = () => {
     }
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 }
+    }
+  };
+
   return (
     <section id="skills" className="relative py-24 bg-[#0f172a] overflow-hidden">
       {/* Background Decorative Element */}
@@ -37,19 +57,31 @@ const Skills = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
         {/* Section Header */}
-        <div className="mb-20 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-20 text-center"
+        >
           <span className="text-sky-400 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Expertise</span>
           <h2 className="text-4xl sm:text-5xl font-black text-white mb-6">Skills & Technologies</h2>
           <div className="w-24 h-1.5 bg-sky-400 mx-auto rounded-full mb-8"></div>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
             Technologies I work with to build modern, scalable, and user-centric web applications.
           </p>
-        </div>
+        </motion.div>
 
         {/* Categories Grid */}
         <div className="space-y-16">
           {skillCategories.map((category, catIndex) => (
-            <div key={catIndex}>
+            <motion.div 
+              key={catIndex}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={containerVariants}
+            >
               <h3 className="text-xl font-bold text-white mb-8 flex items-center gap-4">
                 <span className="text-sky-400">#</span>
                 {category.title}
@@ -58,9 +90,11 @@ const Skills = () => {
 
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 {category.skills.map((skill, skillIndex) => (
-                  <div 
+                  <motion.div 
                     key={skillIndex}
-                    className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300 hover:bg-white/10 hover:border-sky-400/30 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(56,189,248,0.1)]"
+                    variants={itemVariants}
+                    whileHover={{ y: -5, backgroundColor: "rgba(255, 255, 255, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)", boxShadow: "0 10px 30px rgba(56, 189, 248, 0.1)" }}
+                    className="group relative p-6 bg-white/5 border border-white/10 rounded-2xl transition-all duration-300"
                   >
                     <div className="flex flex-col items-center gap-4">
                       <div className="w-12 h-12 flex items-center justify-center text-sky-400 group-hover:scale-110 transition-transform duration-300">
@@ -79,10 +113,10 @@ const Skills = () => {
                     
                     {/* Subtle Bottom Glow */}
                     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-sky-400 rounded-full blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

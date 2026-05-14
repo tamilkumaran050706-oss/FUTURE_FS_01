@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-scroll';
+import { motion } from 'framer-motion';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -32,10 +33,21 @@ const Footer = () => {
   return (
     <footer className="relative bg-[#0f172a] pt-24 pb-12 overflow-hidden border-t border-white/5">
       {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"></div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute top-0 right-0 w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"
+      ></motion.div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        <div className="flex flex-col items-center text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center"
+        >
           {/* Branding */}
           <div className="mb-12">
             <h2 className="text-3xl font-black text-white mb-3">
@@ -68,12 +80,14 @@ const Footer = () => {
           {/* Social Links */}
           <div className="flex items-center gap-8 mb-16">
             {socialLinks.map((social) => (
-              <a
+              <motion.a
                 key={social.name}
+                whileHover={{ y: -5, backgroundColor: "rgba(56, 189, 248, 0.1)", borderColor: "rgba(56, 189, 248, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
                 href={social.href}
                 target={social.name !== 'Email' ? "_blank" : undefined}
                 rel={social.name !== 'Email' ? "noreferrer" : undefined}
-                className="group w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl hover:bg-sky-400/10 hover:border-sky-400/30 transition-all duration-300"
+                className="group w-12 h-12 flex items-center justify-center bg-white/5 border border-white/10 rounded-xl transition-all duration-300"
                 aria-label={social.name}
               >
                 <svg 
@@ -85,12 +99,18 @@ const Footer = () => {
                 >
                   <path d={social.icon} />
                 </svg>
-              </a>
+              </motion.a>
             ))}
           </div>
 
           {/* Divider */}
-          <div className="w-full h-[1px] bg-white/5 mb-8"></div>
+          <motion.div 
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="w-full h-[1px] bg-white/5 mb-8"
+          ></motion.div>
 
           {/* Copyright */}
           <div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4">
@@ -101,7 +121,7 @@ const Footer = () => {
               Designed & Built with Passion
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
