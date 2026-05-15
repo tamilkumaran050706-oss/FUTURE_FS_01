@@ -9,8 +9,8 @@ const Projects = () => {
       tech: ["React", "Tailwind CSS", "JavaScript"],
       github: "https://github.com/tamilkumaran050706-oss/FUTURE_FS_01",
       demo: "#",
-      gradient: "from-sky-500/30 to-blue-600/30",
-      accent: "sky"
+      gradient: "from-neon-lime/20 to-bright-lime/10",
+      accent: "neon-lime"
     },
     {
       title: "Weather App",
@@ -18,8 +18,8 @@ const Projects = () => {
       tech: ["React", "API", "CSS"],
       github: "#",
       demo: "#",
-      gradient: "from-violet-500/30 to-purple-600/30",
-      accent: "violet"
+      gradient: "from-neon-lime/20 to-bright-lime/10",
+      accent: "neon-lime"
     },
     {
       title: "Todo App",
@@ -27,8 +27,8 @@ const Projects = () => {
       tech: ["JavaScript", "HTML", "CSS"],
       github: "#",
       demo: "#",
-      gradient: "from-emerald-500/30 to-teal-600/30",
-      accent: "emerald"
+      gradient: "from-neon-lime/20 to-bright-lime/10",
+      accent: "neon-lime"
     },
     {
       title: "Internship Project",
@@ -36,8 +36,8 @@ const Projects = () => {
       tech: ["React", "Tailwind CSS"],
       github: "#",
       demo: "#",
-      gradient: "from-amber-500/30 to-orange-600/30",
-      accent: "amber"
+      gradient: "from-neon-lime/20 to-bright-lime/10",
+      accent: "neon-lime"
     }
   ];
 
@@ -51,8 +51,6 @@ const Projects = () => {
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
     card.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-8px)`;
-    card.style.setProperty('--mouse-x', `${((e.clientX - rect.left) / rect.width) * 100}%`);
-    card.style.setProperty('--mouse-y', `${((e.clientY - rect.top) / rect.height) * 100}%`);
   }, []);
 
   const handleTiltReset = useCallback((e) => {
@@ -60,15 +58,15 @@ const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="relative py-28 bg-[#020617] overflow-hidden section-separator">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-500/5 rounded-full blur-[130px] -mr-32 -mt-32 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-sky-500/5 rounded-full blur-[130px] -ml-32 -mb-32 pointer-events-none" />
+    <section id="projects" className="relative py-28 bg-transparent overflow-hidden section-separator">
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-bright-lime/3 rounded-full blur-[130px] -mr-32 -mt-32 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-lime/3 rounded-full blur-[130px] -ml-32 -mb-32 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20 text-center">
-          <span className="text-sky-400 font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Portfolio</span>
-          <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-violet-500">Projects</span></h2>
-          <div className="w-20 h-1.5 bg-gradient-to-r from-sky-400 to-violet-500 mx-auto rounded-full" />
+          <span className="text-neon-lime font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Portfolio</span>
+          <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-lime to-bright-lime">Projects</span></h2>
+          <div className="w-20 h-1.5 bg-gradient-to-r from-neon-lime to-bright-lime mx-auto rounded-full" />
         </motion.div>
 
         <motion.div variants={containerV} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -83,7 +81,7 @@ const Projects = () => {
             >
               {/* Project Preview Area */}
               <div className={`h-56 w-full bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/10 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black-deep/30 group-hover:bg-black-deep/10 transition-colors duration-500" />
 
                 {/* Shimmer sweep */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
@@ -105,7 +103,7 @@ const Projects = () => {
                 </div>
 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-sky-400/10 via-transparent to-violet-500/10" />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-neon-lime/10 via-transparent to-bright-lime/10" />
               </div>
 
               {/* Project Info */}
@@ -113,29 +111,29 @@ const Projects = () => {
                 {/* Tech Tags */}
                 <div className="flex flex-wrap gap-2 mb-5">
                   {project.tech.map((t, i) => (
-                    <span key={i} className="px-3 py-1 text-xs font-bold rounded-full bg-slate-900/60 text-slate-400 border border-white/[0.08] group-hover:border-sky-400/20 group-hover:text-sky-400 transition-all duration-300">
+                    <span key={i} className="px-3 py-1 text-xs font-bold rounded-full bg-[var(--glass-bg)] text-gray-muted border border-dark-border group-hover:border-neon-lime/20 group-hover:text-neon-lime transition-all duration-300">
                       {t}
                     </span>
                   ))}
                 </div>
 
-                <h3 className="font-display text-2xl font-bold text-white mb-4 group-hover:text-sky-400 transition-colors duration-300">
+                <h3 className="font-display text-2xl font-bold text-white mb-4 group-hover:text-neon-lime transition-colors duration-300">
                   {project.title}
                 </h3>
 
-                <p className="text-slate-400 leading-relaxed mb-8 text-sm">
+                <p className="text-gray-muted leading-relaxed mb-8 text-sm">
                   {project.description}
                 </p>
 
                 {/* Action Links */}
                 <div className="flex items-center gap-8">
                   <a href={project.github} target="_blank" rel="noreferrer"
-                    className="flex items-center gap-2 text-slate-500 hover:text-white text-sm font-bold transition-all duration-300 group/btn">
+                    className="flex items-center gap-2 text-gray-muted/60 hover:text-white text-sm font-bold transition-all duration-300 group/btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover/btn:scale-110 transition-transform"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                     <span className="tracking-wider uppercase">Code</span>
                   </a>
                   <a href={project.demo}
-                    className="flex items-center gap-2 text-sky-400 hover:text-violet-400 text-sm font-bold transition-all duration-300 group/btn">
+                    className="flex items-center gap-2 text-neon-lime hover:text-bright-lime text-sm font-bold transition-all duration-300 group/btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 22 3 22 10"/><line x1="10" y1="14" x2="22" y2="2"/></svg>
                     <span className="tracking-wider uppercase">Live Demo</span>
                   </a>

@@ -71,29 +71,29 @@ const Hero = () => {
     <section 
       id="hero" 
       ref={sectionRef}
-      className="relative min-h-screen flex items-center bg-[#020617] overflow-hidden"
+      className="relative min-h-screen flex items-center bg-transparent overflow-hidden"
     >
       {/* Dynamic Background Blobs with Parallax */}
       <motion.div className="absolute inset-0 z-0 overflow-hidden" style={{ y: backgroundY }}>
-        <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-sky-500/15 rounded-full blur-[140px] animate-float"></div>
-        <div className="absolute bottom-1/4 -right-32 w-[700px] h-[700px] bg-violet-600/15 rounded-full blur-[140px] animate-float-slow"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-sky-400/5 rounded-full blur-[100px]"></div>
+        <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] bg-neon-lime/10 rounded-full blur-[140px] animate-float"></div>
+        <div className="absolute bottom-1/4 -right-32 w-[700px] h-[700px] bg-bright-lime/5 rounded-full blur-[140px] animate-float-slow"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon-lime/5 rounded-full blur-[100px]"></div>
         {/* Extra ambient orbs */}
         <motion.div
           animate={{ x: [0, 40, -20, 0], y: [0, -30, 20, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-violet-400/8 rounded-full blur-[120px]"
+          className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-bright-lime/5 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{ x: [0, -30, 15, 0], y: [0, 25, -15, 0] }}
           transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          className="absolute bottom-1/3 left-1/4 w-[250px] h-[250px] bg-sky-300/6 rounded-full blur-[100px]"
+          className="absolute bottom-1/3 left-1/4 w-[250px] h-[250px] bg-neon-lime/5 rounded-full blur-[100px]"
         />
       </motion.div>
 
       {/* Grid Pattern Overlay */}
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" 
-        style={{ backgroundImage: 'radial-gradient(rgba(148,163,184,0.08) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+        style={{ backgroundImage: 'radial-gradient(rgba(198,255,0,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
       </div>
 
       <motion.div
@@ -111,10 +111,10 @@ const Hero = () => {
               className="inline-flex items-center gap-3 px-5 py-2.5 mb-10 rounded-full glass-premium glow-border"
             >
               <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+                <span className="absolute inline-flex h-full w-full rounded-full bg-neon-lime opacity-75 animate-ping"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-lime"></span>
               </span>
-              <span className="text-slate-300 text-xs font-bold tracking-[0.2em] uppercase">
+              <span className="text-gray-muted text-xs font-bold tracking-[0.2em] uppercase">
                 Open to Work
               </span>
             </motion.div>
@@ -136,7 +136,7 @@ const Hero = () => {
                   initial="hidden"
                   animate="visible"
                   variants={wordVariants}
-                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-violet-400 to-sky-400 animate-gradient-x"
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-neon-lime via-bright-lime to-neon-lime animate-gradient-x"
                 >
                   Digital
                 </motion.span>
@@ -159,7 +159,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="text-lg sm:text-xl text-slate-400 mb-12 font-medium leading-relaxed max-w-2xl mx-auto"
+              className="text-lg sm:text-xl text-gray-muted mb-12 font-medium leading-relaxed max-w-2xl mx-auto"
             >
               Hi, I'm <span className="text-white font-bold">Tamil Kumaran</span> — a Full Stack Developer building modern, performant web applications with clean code and pixel-perfect design.
             </motion.p>
@@ -173,22 +173,22 @@ const Hero = () => {
             >
               <Link to="projects" smooth={true} duration={500} offset={-80}>
                 <motion.button 
-                  whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(56,189,248,0.3)" }}
+                  whileHover={{ scale: 1.04, boxShadow: "0 0 50px rgba(198,255,0,0.3)" }}
                   whileTap={{ scale: 0.96 }}
-                  className="group px-10 py-4 bg-gradient-to-r from-sky-400 to-sky-500 text-slate-950 font-bold rounded-full transition-all duration-300 cursor-pointer text-base tracking-tight flex items-center gap-3 relative overflow-hidden"
+                  className="group px-10 py-4 bg-gradient-to-r from-neon-lime to-bright-lime text-black-deep font-bold rounded-full transition-all duration-300 cursor-pointer text-base tracking-tight flex items-center gap-3 relative overflow-hidden"
                 >
                   <span className="relative z-10 flex items-center gap-3">
                     View Projects
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 transition-transform duration-300"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-sky-300 to-sky-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-bright-lime to-neon-lime opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.button>
               </Link>
               <Link to="contact" smooth={true} duration={500} offset={-80}>
                 <motion.button 
-                  whileHover={{ scale: 1.04, backgroundColor: "rgba(15,23,42,0.8)" }}
+                  whileHover={{ scale: 1.04, backgroundColor: "rgba(21,21,23,0.8)" }}
                   whileTap={{ scale: 0.96 }}
-                  className="px-10 py-4 glass-premium text-white font-bold rounded-full transition-all duration-300 cursor-pointer text-base tracking-tight hover:shadow-[0_0_30px_rgba(139,92,246,0.15)]"
+                  className="px-10 py-4 glass-premium text-white font-bold rounded-full transition-all duration-300 cursor-pointer text-base tracking-tight hover:shadow-[0_0_30px_rgba(198,255,0,0.15)]"
                 >
                   Contact Me
                 </motion.button>
@@ -206,11 +206,11 @@ const Hero = () => {
                 <motion.a
                   key={idx}
                   variants={socialVariants}
-                  whileHover={{ y: -4, scale: 1.15, boxShadow: "0 0 20px rgba(56,189,248,0.2)" }}
+                  whileHover={{ y: -4, scale: 1.15, boxShadow: "0 0 20px rgba(198,255,0,0.2)" }}
                   href={social.href}
                   target={social.name !== 'Email' ? "_blank" : undefined}
                   rel={social.name !== 'Email' ? "noreferrer" : undefined}
-                  className="w-11 h-11 flex items-center justify-center rounded-xl bg-slate-900/60 border border-white/[0.08] text-slate-500 hover:text-sky-400 hover:border-sky-400/30 transition-all duration-300"
+                  className="w-11 h-11 flex items-center justify-center rounded-xl bg-[var(--glass-bg)] border border-dark-border text-gray-muted hover:text-neon-lime hover:border-neon-lime/30 transition-all duration-300"
                   aria-label={social.name}
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 fill-none stroke-current" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -230,15 +230,15 @@ const Hero = () => {
         transition={{ delay: 1.8, duration: 1 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
       >
-        <span className="text-slate-600 text-[10px] font-bold uppercase tracking-[0.4em]">Scroll</span>
-        <div className="w-5 h-8 rounded-full border border-white/[0.08] flex justify-center pt-2 relative overflow-hidden">
+        <span className="text-gray-muted/40 text-[10px] font-bold uppercase tracking-[0.4em]">Scroll</span>
+        <div className="w-5 h-8 rounded-full border border-dark-border flex justify-center pt-2 relative overflow-hidden">
           <motion.div 
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
-            className="w-1 h-1.5 rounded-full bg-sky-400"
+            className="w-1 h-1.5 rounded-full bg-neon-lime"
           ></motion.div>
           {/* Subtle glow trail */}
-          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-4 bg-sky-400/10 blur-md rounded-full" />
+          <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-4 bg-neon-lime/10 blur-md rounded-full" />
         </div>
       </motion.div>
     </section>

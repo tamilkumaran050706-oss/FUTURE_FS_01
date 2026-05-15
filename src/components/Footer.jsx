@@ -42,12 +42,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-[#020617] pt-20 pb-10 overflow-hidden">
+    <footer className="relative bg-transparent pt-20 pb-10 overflow-hidden">
       {/* Top gradient separator */}
       <div className="absolute top-0 left-0 w-full gradient-line" />
 
       {/* Background */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-r from-sky-400/5 via-violet-500/5 to-sky-400/5 blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-gradient-to-r from-neon-lime/3 via-bright-lime/2 to-neon-lime/3 blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
         <div className="flex flex-col items-center text-center">
@@ -60,9 +60,9 @@ const Footer = () => {
             className="mb-10"
           >
             <h2 className="font-display text-3xl font-bold text-white mb-2 tracking-tight">
-              TAMIL <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-violet-500">KUMARAN</span>
+              TAMIL <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-lime to-bright-lime">KUMARAN</span>
             </h2>
-            <p className="text-slate-500 text-[10px] font-bold tracking-[0.4em] uppercase">
+            <p className="text-gray-muted/40 text-[10px] font-bold tracking-[0.4em] uppercase">
               Full Stack Developer
             </p>
           </motion.div>
@@ -83,10 +83,10 @@ const Footer = () => {
                     smooth={true}
                     duration={500}
                     offset={-80}
-                    className="text-slate-500 hover:text-sky-400 font-semibold transition-all duration-300 cursor-pointer text-xs tracking-wider uppercase relative group"
+                    className="text-gray-muted hover:text-neon-lime font-semibold transition-all duration-300 cursor-pointer text-xs tracking-wider uppercase relative group"
                   >
                     {link.name}
-                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-sky-400 group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-neon-lime group-hover:w-full transition-all duration-300" />
                   </Link>
                 </motion.li>
               ))}
@@ -105,17 +105,17 @@ const Footer = () => {
               <motion.a
                 key={social.name}
                 variants={itemV}
-                whileHover={{ y: -4, scale: 1.1, boxShadow: "0 0 20px rgba(56,189,248,0.2)" }}
+                whileHover={{ y: -4, scale: 1.1, boxShadow: "0 0 20px rgba(198,255,0,0.2)" }}
                 whileTap={{ scale: 0.9 }}
                 href={social.href}
                 target={social.name !== 'Email' ? "_blank" : undefined}
                 rel={social.name !== 'Email' ? "noreferrer" : undefined}
-                className="group w-11 h-11 flex items-center justify-center bg-slate-900/60 border border-white/[0.08] rounded-xl transition-all duration-300 hover:border-sky-400/30 hover:bg-sky-400/5"
+                className="group w-11 h-11 flex items-center justify-center bg-charcoal border border-dark-border rounded-xl transition-all duration-300 hover:border-neon-lime/30 hover:bg-neon-lime/5"
                 aria-label={social.name}
               >
                 <svg 
                   viewBox="0 0 24 24" 
-                  className="w-5 h-5 fill-none stroke-current text-slate-500 group-hover:text-sky-400 transition-colors duration-300" 
+                  className="w-5 h-5 fill-none stroke-current text-gray-muted group-hover:text-neon-lime transition-colors duration-300" 
                   strokeWidth="2" 
                   strokeLinecap="round" 
                   strokeLinejoin="round"
@@ -137,11 +137,11 @@ const Footer = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-between w-full gap-4"
           >
-            <p className="text-slate-600 text-xs font-medium">
+            <p className="text-gray-muted/40 text-xs font-medium">
               &copy; {currentYear} Tamil Kumaran. All rights reserved.
             </p>
-            <p className="text-slate-700 text-xs flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <p className="text-gray-muted/30 text-xs flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-neon-lime animate-pulse"></span>
               Designed & Built with Passion
             </p>
           </motion.div>
@@ -151,9 +151,9 @@ const Footer = () => {
       {/* Back to top */}
       <Link to="hero" smooth={true} duration={800}>
         <motion.button
-          whileHover={{ y: -3, boxShadow: "0 0 20px rgba(56,189,248,0.2)" }}
+          whileHover={{ y: -3, boxShadow: "0 0 20px rgba(198,255,0,0.2)" }}
           whileTap={{ scale: 0.9 }}
-          className="fixed bottom-8 right-8 w-10 h-10 rounded-xl bg-slate-900/60 border border-white/[0.08] flex items-center justify-center text-slate-500 hover:text-sky-400 hover:border-sky-400/30 transition-all duration-300 cursor-pointer z-40 backdrop-blur-xl"
+          className="fixed bottom-8 right-8 w-10 h-10 rounded-xl bg-charcoal/80 border border-dark-border flex items-center justify-center text-gray-muted hover:text-neon-lime hover:border-neon-lime/30 transition-all duration-300 cursor-pointer z-40 backdrop-blur-xl"
           aria-label="Back to top"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

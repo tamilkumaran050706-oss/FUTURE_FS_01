@@ -62,8 +62,8 @@ const Navbar = () => {
       transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       className={`fixed top-0 left-0 w-full z-50 transition-colors duration-500 ${
         scrolled
-          ? 'bg-slate-950/60 backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.15)]'
-          : 'bg-transparent'
+          ? 'glass backdrop-blur-2xl shadow-[0_4px_30px_rgba(0,0,0,0.3)] border-x-0 border-t-0'
+          : 'bg-transparent border-b border-transparent'
       }`}
     >
       {/* Top gradient line when scrolled */}
@@ -75,7 +75,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 cursor-pointer group">
             <Link to="hero" smooth={true} duration={500}>
               <h1 className="text-2xl font-black text-white tracking-tighter">
-                TAMIL <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-violet-500 group-hover:from-violet-500 group-hover:to-sky-400 transition-all duration-500">KUMARAN</span>
+                TAMIL <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-lime to-bright-lime group-hover:from-bright-lime group-hover:to-neon-lime transition-all duration-500">KUMARAN</span>
               </h1>
             </Link>
           </div>
@@ -92,10 +92,10 @@ const Navbar = () => {
                   spy={true}
                   offset={-80}
                   activeClass="active"
-                  className="nav-link text-slate-400 hover:text-white text-sm font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer relative group"
+                  className="nav-link text-gray-muted hover:text-white text-sm font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer relative group"
                 >
                   {link.name}
-                  <span className="nav-underline absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-400 to-violet-500 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="nav-underline absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-neon-lime to-bright-lime transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ))}
               
@@ -103,10 +103,10 @@ const Navbar = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="relative px-6 py-2.5 bg-slate-900/60 border border-white/[0.08] rounded-full text-white text-sm font-bold hover:bg-sky-400/10 hover:border-sky-400/30 transition-all duration-300 hover:shadow-[0_0_25px_rgba(56,189,248,0.2)] cursor-pointer overflow-hidden group"
+                  className="relative px-6 py-2.5 bg-charcoal border border-dark-border rounded-full text-white text-sm font-bold hover:bg-neon-lime/10 hover:border-neon-lime/30 transition-all duration-300 hover:shadow-[0_0_25px_rgba(198,255,0,0.2)] cursor-pointer overflow-hidden group"
                 >
                   <span className="relative z-10">Hire Me</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-sky-400/0 via-sky-400/10 to-sky-400/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-lime/0 via-neon-lime/10 to-neon-lime/0 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
                 </motion.button>
               </Link>
             </div>
@@ -140,7 +140,7 @@ const Navbar = () => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="md:hidden bg-slate-950/95 backdrop-blur-2xl border-b border-white/[0.08] overflow-hidden"
+            className="md:hidden bg-black-deep/95 backdrop-blur-2xl border-b border-dark-border overflow-hidden"
           >
             <div className="px-6 pt-4 pb-10 space-y-2">
               {navLinks.map((link) => (
@@ -151,9 +151,9 @@ const Navbar = () => {
                     duration={500}
                     spy={true}
                     offset={-80}
-                    activeClass="text-sky-400 bg-slate-900/60 border-sky-400"
+                    activeClass="text-neon-lime bg-charcoal border-neon-lime"
                     onClick={() => setIsOpen(false)}
-                    className="text-slate-400 hover:text-white block px-4 py-5 text-lg font-bold transition-all duration-300 cursor-pointer border-l-4 border-transparent hover:border-sky-400 hover:bg-slate-900/40"
+                    className="text-gray-muted hover:text-white block px-4 py-5 text-lg font-bold transition-all duration-300 cursor-pointer border-l-4 border-transparent hover:border-neon-lime hover:bg-neon-lime/5"
                   >
                     {link.name}
                   </Link>
