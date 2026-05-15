@@ -15,7 +15,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto !important;
 }
 
 body {
@@ -35,22 +35,46 @@ body {
   color: #0B0B0D;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Premium Cinematic Style */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: #0B0B0D;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, var(--primary-accent), #96c200);
-  border-radius: 3px;
+  background: #1A1A1D;
+  border: 3px solid #0B0B0D;
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-accent);
+  background: var(--primary-accent);
+  box-shadow: 0 0 15px var(--glow-lime);
+}
+
+/* Lenis CSS */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 /* Custom theme colors for Tailwind v4 */
@@ -354,23 +378,28 @@ body {
   background-clip: padding-box, border-box;
 }
 
-.animated-border::before {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: inherit;
-  background: conic-gradient(
-    from var(--border-angle),
-    transparent 40%,
-    rgba(198, 255, 0, 0.6) 50%,
-    rgba(215, 255, 74, 0.5) 55%,
-    transparent 60%
-  );
-  animation: border-rotate 4s linear infinite;
-  z-index: -1;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  -webkit-mask-composite: xor;
-  padding: 2px;
+/* ============================
+   CINEMATIC SCROLL REVEALS
+   ============================ */
+
+.reveal-hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(5px);
+  transition: all 1s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.scroll-parallax {
+  will-change: transform;
 }
