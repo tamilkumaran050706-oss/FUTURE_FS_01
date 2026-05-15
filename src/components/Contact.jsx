@@ -1,14 +1,52 @@
-import React, { useCallback } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [status, setStatus] = useState({ loading: false, success: false, error: null });
+
   const contactLinks = [
     { label: 'Email', value: 'tamil.kumaran050706@gmail.com', icon: 'M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z M22 6l-10 7L2 6', href: 'mailto:tamil.kumaran050706@gmail.com' },
     { label: 'LinkedIn', value: 'Tamil Kumaran', icon: 'M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z M2 9h4v12H2z M4 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4z', href: 'https://www.linkedin.com/in/tamil-kumaran-11181432a/' },
     { label: 'GitHub', value: 'tamilkumaran050706-oss', icon: 'M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4M9 18c-4.51 2-5-2-7-2', href: 'https://github.com/tamilkumaran050706-oss' }
   ];
 
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: false, error: null });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ loading: false, success: true, error: null });
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        // Reset success message after 5 seconds
+        setTimeout(() => setStatus(prev => ({ ...prev, success: false })), 5000);
+      } else {
+        const errorMsg = data.errors ? data.errors.map(err => err.message).join(', ') : data.message;
+        setStatus({ loading: false, success: false, error: errorMsg || 'Failed to send message' });
+      }
+    } catch (err) {
+      setStatus({ loading: false, success: false, error: 'Network error. Please make sure the backend is running.' });
+    }
+  };
 
   return (
     <section id="contact" className="relative py-28 bg-transparent overflow-hidden">
@@ -67,37 +105,55 @@ const Contact = () => {
             <div className="absolute top-0 right-0 w-40 h-40 bg-neon-lime/5 blur-[80px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-bright-lime/5 blur-[60px] pointer-events-none" />
 
-            <form className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2 group">
                   <label htmlFor="name" className="text-gray-muted text-[10px] font-bold uppercase tracking-widest ml-1 group-focus-within:text-neon-lime transition-colors duration-300">Full Name</label>
-                  <input type="text" id="name" placeholder="Your name"
+                  <input type="text" id="name" placeholder="Your name" value={formData.name} onChange={handleChange} required
                     className="w-full bg-[var(--glass-bg)] border border-dark-border rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-800 focus:outline-none focus:border-neon-lime/50 glow-focus transition-all duration-300" />
                 </div>
                 <div className="space-y-2 group">
                   <label htmlFor="email" className="text-gray-muted text-[10px] font-bold uppercase tracking-widest ml-1 group-focus-within:text-neon-lime transition-colors duration-300">Email</label>
-                  <input type="email" id="email" placeholder="Your email"
+                  <input type="email" id="email" placeholder="Your email" value={formData.email} onChange={handleChange} required
                     className="w-full bg-[var(--glass-bg)] border border-dark-border rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-800 focus:outline-none focus:border-neon-lime/50 glow-focus transition-all duration-300" />
                 </div>
               </div>
               <div className="space-y-2 group">
                 <label htmlFor="subject" className="text-gray-muted text-[10px] font-bold uppercase tracking-widest ml-1 group-focus-within:text-neon-lime transition-colors duration-300">Subject</label>
-                <input type="text" id="subject" placeholder="Project inquiry"
+                <input type="text" id="subject" placeholder="Project inquiry" value={formData.subject} onChange={handleChange} required
                   className="w-full bg-[var(--glass-bg)] border border-dark-border rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-800 focus:outline-none focus:border-neon-lime/50 glow-focus transition-all duration-300" />
               </div>
               <div className="space-y-2 group">
                 <label htmlFor="message" className="text-gray-muted text-[10px] font-bold uppercase tracking-widest ml-1 group-focus-within:text-neon-lime transition-colors duration-300">Message</label>
-                <textarea id="message" rows="4" placeholder="Tell me about your project..."
+                <textarea id="message" rows="4" placeholder="Tell me about your project..." value={formData.message} onChange={handleChange} required
                   className="w-full bg-[var(--glass-bg)] border border-dark-border rounded-xl px-5 py-3.5 text-white text-sm placeholder:text-slate-800 focus:outline-none focus:border-neon-lime/50 glow-focus transition-all duration-300 resize-none" />
               </div>
+
+              <AnimatePresence>
+                {status.success && (
+                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 rounded-xl bg-neon-lime/10 border border-neon-lime/20 text-neon-lime text-sm font-bold text-center">
+                    Message sent successfully!
+                  </motion.div>
+                )}
+                {status.error && (
+                  <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-bold text-center">
+                    {status.error}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
               <motion.button
+                type="submit"
+                disabled={status.loading}
                 whileHover={{ scale: 1.02, boxShadow: "0 0 40px rgba(198,255,0,0.25)" }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-4 bg-gradient-to-r from-neon-lime to-bright-lime text-black-deep font-bold rounded-xl transition-all duration-300 text-sm tracking-wider uppercase flex items-center justify-center gap-3 relative overflow-hidden group"
+                className={`w-full py-4 bg-gradient-to-r from-neon-lime to-bright-lime text-black-deep font-bold rounded-xl transition-all duration-300 text-sm tracking-wider uppercase flex items-center justify-center gap-3 relative overflow-hidden group ${status.loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
                 <span className="relative z-10 flex items-center gap-3">
-                  Send Message
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  {status.loading ? 'Sending...' : 'Send Message'}
+                  {!status.loading && (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  )}
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-bright-lime to-neon-lime opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.button>
