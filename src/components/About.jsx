@@ -79,10 +79,10 @@ const About = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
         {/* Section Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
           className="mb-20 text-center"
         >
           <span className="text-neon-lime font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Introduction</span>
@@ -93,10 +93,10 @@ const About = () => {
         <div className="flex flex-col lg:flex-row items-center gap-20 lg:gap-28">
           {/* Left Side: Image Area */}
           <motion.div 
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9, x: -40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, scale: 1, x: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="flex-1 relative group w-full max-w-md lg:max-w-none"
           >
             {/* Animated gradient border ring */}
@@ -127,7 +127,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.5 }}
+              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
               className="absolute -bottom-8 left-8 z-20 glass-premium p-5 rounded-2xl hidden sm:block animate-float-gentle"
             >
               <div className="text-neon-lime font-display font-bold text-2xl">Developer</div>
@@ -137,10 +137,10 @@ const About = () => {
 
           {/* Right Side: Content */}
           <motion.div 
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, x: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="flex-[1.3] text-center lg:text-left"
           >
             <motion.div
@@ -164,14 +164,24 @@ const About = () => {
             </motion.div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 mb-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 mb-12"
+            >
               {stats.map((stat, idx) => (
                 <StatCard key={idx} stat={stat} idx={idx} />
               ))}
-            </div>
+            </motion.div>
 
             {/* Resume Button */}
             <motion.button 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6, duration: 0.8 }}
               whileHover={{ scale: 1.03, boxShadow: "0 0 40px rgba(198, 255, 0, 0.25)" }}
               whileTap={{ scale: 0.97 }}
               className="group relative px-10 py-4 bg-transparent border-2 border-neon-lime/30 text-neon-lime font-bold rounded-full overflow-hidden transition-all duration-300 hover:text-black-deep hover:border-neon-lime"

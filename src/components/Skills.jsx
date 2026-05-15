@@ -48,13 +48,25 @@ const Skills = () => {
     <section id="skills" className="relative py-28 bg-transparent overflow-hidden section-separator">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-lime/3 rounded-full blur-[150px] pointer-events-none" />
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }} 
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} 
+          viewport={{ once: true, margin: "-100px" }} 
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }} 
+          className="mb-20 text-center"
+        >
           <span className="text-neon-lime font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Expertise</span>
           <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-lime to-bright-lime">Stack</span></h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-neon-lime to-bright-lime mx-auto rounded-full" />
         </motion.div>
 
-        <motion.div variants={containerV} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerV} 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }} 
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {categories.map((cat, idx) => (
             <motion.div key={idx} variants={itemV} whileHover={{ y: -8 }}
               className="group relative p-9 rounded-3xl glass-premium card-spotlight glow-border transition-all duration-500"

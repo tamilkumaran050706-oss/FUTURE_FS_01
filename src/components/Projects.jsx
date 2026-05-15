@@ -63,13 +63,25 @@ const Projects = () => {
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-neon-lime/3 rounded-full blur-[130px] -ml-32 -mb-32 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }} 
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} 
+          viewport={{ once: true, margin: "-100px" }} 
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }} 
+          className="mb-20 text-center"
+        >
           <span className="text-neon-lime font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Portfolio</span>
           <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-lime to-bright-lime">Projects</span></h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-neon-lime to-bright-lime mx-auto rounded-full" />
         </motion.div>
 
-        <motion.div variants={containerV} initial="hidden" whileInView="visible" viewport={{ once: true }} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div 
+          variants={containerV} 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }} 
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           {projects.map((project, index) => (
             <motion.div
               key={index}

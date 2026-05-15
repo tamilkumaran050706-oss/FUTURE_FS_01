@@ -53,7 +53,13 @@ const Contact = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-neon-lime/3 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-20 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 30, filter: 'blur(10px)' }} 
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} 
+          viewport={{ once: true, margin: "-100px" }} 
+          transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }} 
+          className="mb-20 text-center"
+        >
           <span className="text-neon-lime font-bold tracking-[0.3em] uppercase text-xs mb-4 block">Contact</span>
           <h2 className="font-display text-5xl sm:text-6xl font-bold text-white mb-6 tracking-tight">Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-lime to-bright-lime">Touch</span></h2>
           <div className="w-20 h-1.5 bg-gradient-to-r from-neon-lime to-bright-lime mx-auto rounded-full" />
@@ -61,7 +67,13 @@ const Contact = () => {
 
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
           {/* Contact Info */}
-          <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="flex-1 space-y-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -40, filter: 'blur(10px)' }} 
+            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }} 
+            viewport={{ once: true, margin: "-100px" }} 
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }} 
+            className="flex-1 space-y-8"
+          >
             <div className="mb-10">
               <h3 className="font-display text-3xl font-bold text-white mb-4 tracking-tight">
                 Let's build something <span className="text-neon-lime">extraordinary</span>.
@@ -78,6 +90,10 @@ const Contact = () => {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + idx * 0.1, duration: 0.5 }}
                   whileHover={{ x: 8 }}
                   className="flex items-center gap-5 p-5 rounded-2xl glass-premium card-spotlight group transition-all duration-300 hover:shadow-[0_0_30px_rgba(198,255,0,0.05)]"
                   style={{ '--mouse-x': '50%', '--mouse-y': '50%' }}
@@ -96,10 +112,10 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            initial={{ opacity: 0, x: 40, filter: 'blur(10px)' }}
+            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             className="flex-[1.3] p-8 lg:p-10 rounded-3xl glass-premium relative overflow-hidden animated-border"
           >
             <div className="absolute top-0 right-0 w-40 h-40 bg-neon-lime/5 blur-[80px] pointer-events-none" />

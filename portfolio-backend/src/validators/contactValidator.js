@@ -1,14 +1,27 @@
-const { body } = require('express-validator');
+const validateContact = (data) => {
+  const errors = [];
+  const { name, email, subject, message } = data;
 
-const contactValidationRules = () => {
-  return [
-    body('name').notEmpty().withMessage('Name is required').trim().escape(),
-    body('email').isEmail().withMessage('Valid email is required').normalizeEmail(),
-    body('subject').notEmpty().withMessage('Subject is required').trim().escape(),
-    body('message').notEmpty().withMessage('Message is required').trim().escape(),
-  ];
+  if (!name || name.trim() === '') {
+    errors.push({ field: 'name', message: 'Name is required' });
+  }
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errors.push({ field: 'email', message: 'Valid email is required' });
+  }
+
+  if (!subject || subject.trim() === '') {
+    errors.push({ field: 'subject', message: 'Subject is required' });
+  }
+
+  if (!message || message.trim().length < 10) {
+    errors.push({ field: 'message', message: 'Message must be at least 10 characters long' });
+  }
+
+  return {
+    isValid: errors.length === 0,
+    errors
+  };
 };
 
-module.exports = {
-  contactValidationRules,
-};
+module.exports = { validateContact };

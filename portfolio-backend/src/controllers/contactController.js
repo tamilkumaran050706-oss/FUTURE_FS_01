@@ -1,21 +1,22 @@
-const { validationResult } = require('express-validator');
 const Contact = require('../models/contactModel');
 const sendEmail = require('../utils/sendEmail');
+const { validateContact } = require('../validators/contactValidator');
 
 // @desc    Submit contact form
 // @route   POST /api/contact
 // @access  Public
 const submitContactForm = async (req, res, next) => {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+  const { isValid, errors } = validateContact(req.body);
+
+  if (!isValid) {
+    return res.status(400).json({ success: false, errors });
   }
 
   const { name, email, subject, message } = req.body;
 
   try {
-    // Save to database
-    const contact = await Contact.create({
+    // Save to MySQL database
+    await Contact.create({
       name,
       email,
       subject,
@@ -31,14 +32,13 @@ const submitContactForm = async (req, res, next) => {
         message,
       });
     } catch (emailError) {
-      console.error('Email could not be sent', emailError);
-      // We don't necessarily want to fail the whole request if email fails but DB succeeded
+      console.error('Email could not be sent:', emailError.message);
+      // Continue even if email fails
     }
 
     res.status(201).json({
       success: true,
-      message: 'Message received and saved successfully',
-      data: contact,
+      message: 'Message sent successfully! I will get back to you soon.',
     });
   } catch (error) {
     next(error);
